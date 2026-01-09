@@ -24,7 +24,7 @@ body {
 .goal-row input { padding: 2px 5px; width: 60px; }
 
 input, select, button { padding: 8px; border-radius: 8px; border: 1px solid #ddd; }
-button { cursor: pointer; color: white; border: none; font-weight: bold; font-size: 0.8rem; }
+button { cursor: pointer; color: rgb(247, 246, 246); border: none; font-weight: bold; font-size: 0.8rem; }
 .btn-income { background: #00b894; width: 60px; }
 .btn-expense { background: #6c5ce7; }
 
@@ -42,3 +42,91 @@ h2 { font-size: 1.1rem; text-align: center; margin: 5px 0; }
 
 .amount-income { color: #00b894; font-weight: bold; }
 .amount-expense { color: #ff7675; font-weight: bold; }
+/* 確保支出類別下拉選單的文字顏色與寬度 */
+#item-category {
+    color: #0d0e0e !important; /* 深灰色字體 */
+    font-weight: bold;
+    background-color: #eeeded;
+    border: 1px solid #6c5ce7;
+    cursor: pointer;
+}
+
+/* 針對下拉選單內的選項進行美化 */
+#item-category option {
+    color: #2d3436;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+/* 稍微增加輸入列的間距，避免文字擠在一起 */
+.input-row {
+    display: flex;
+    gap: 8px; /* 增加間距 */
+    margin-bottom: 8px;
+}
+/* 區塊總容器 */
+.section-container {
+    margin-bottom: 15px;
+}
+
+/* 標題樣式：深色字體、加粗、小圖示間距 */
+.section-title {
+    font-size: 0.95rem;
+    color: #2d3436; /* 深色標題 */
+    margin: 0 0 8px 5px; /* 與下方容器的間距 */
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+/* 調整圖表與明細的高度，確保不佔空間 */
+.chart-container { 
+    height: 160px; 
+    background: white; 
+    border-radius: 15px; 
+    padding: 10px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.history-container { 
+    height: 130px; 
+    overflow-y: auto; 
+    background: white; 
+    border-radius: 15px; 
+    padding: 10px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* 修改 grid 佈局確保垂直排列緊湊 */
+.display-grid { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; 
+}
+.goal-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1px dashed #6c5ce7; /* 虛線外框增加設計感 */
+}
+
+.goal-section label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #2d3436;
+}
+
+#saving-goal {
+    width: 80px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    color: #6c5ce7;
+    font-weight: bold;
+}

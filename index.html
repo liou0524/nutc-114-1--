@@ -11,12 +11,12 @@
     <div class="app-container">
         <div class="top-section">
             <div class="rate-card">
-                <select id="currency-select" onchange="getExchangeRate()">
-                    <option value="USD">🇺🇸 美金 (USD)</option>
-                    <option value="HKD">🇭🇰 港幣 (HKD)</option>
-                    <option value="KRW">🇰🇷 韓圓 (KRW)</option>
-                    <option value="EUR">🇪🇺 歐元 (EUR)</option>
-                    <option value="JPY">🇯🇵 日圓 (JPY)</option>
+<select id="currency-select" onchange="getExchangeRate()">
+                    <option value="USD">美國 (USD)</option>
+                    <option value="HKD">香港 (HKD)</option>
+                    <option value="KRW">韓國 (KRW)</option>
+                    <option value="EUR">歐元 (EUR)</option>
+                    <option value="JPY">日本 (JPY)</option>
                 </select>
                 <div id="rate-display">載入中...</div>
             </div>
@@ -36,29 +36,40 @@
             <div class="input-row">
                 <input type="text" id="item-name" placeholder="支出項目" style="width:35%">
                 <input type="number" id="item-amount" placeholder="金額" style="width:25%">
-                <select id="item-category" style="width:20%">
-                    <option value="食">🍽️</option><option value="衣">👕</option>
-                    <option value="住">🏠</option><option value="行">🚗</option>
-                    <option value="育">📚</option><option value="樂">🎮</option>
-                </select>
+<select id="item-category" style="width: 30%; color: #000; font-weight: bold;">
+    <option value="食">🍽️ 食</option>
+    <option value="衣">👕 衣</option>
+    <option value="住">🏠 住</option>
+    <option value="行">🚗 行</option>
+    <option value="育">📚 育</option>
+    <option value="樂">🎮 樂</option>
+</select>
                 <button onclick="addItem()" class="btn-expense" style="width:20%">新增</button>
             </div>
-            <div class="goal-row">
-                <label>存錢目標: </label>
-                <input type="number" id="saving-goal" value="10000" onchange="updateStatus()">
-            </div>
-        </div>
+<div class="goal-section">
+    <label for="saving-goal">🎯 存款目標：</label>
+    <input type="number" id="saving-goal" value="10000" onchange="updateStatus()">
+    <span style="font-size: 0.8rem; color: #666;">TWD</span>
+</div>
 
         <h2 id="balance-display">結餘：$0</h2>
 
-        <div class="display-grid">
-            <div class="chart-container">
-                <canvas id="myChart"></canvas>
-            </div>
-            <div class="history-container">
-                <ul id="history-list"></ul>
-            </div>
+<div class="display-grid">
+    <div class="section-container">
+        <h4 class="section-title">📊 支出類別比例分析</h4>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
         </div>
+    </div>
+
+    <div class="section-container">
+        <h4 class="section-title">📜 收支歷史明細紀錄</h4>
+        <div class="history-container">
+            <ul id="history-list">
+                </ul>
+        </div>
+    </div>
+</div>
     </div>
     <script src="script.js"></script>
 </body>
