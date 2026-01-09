@@ -1,107 +1,170 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
 
 :root {
-    --primary: #4a90e2;
-    --success: #28a745;
-    --danger: #e57373;
-    --bg: #f4f7f9;
+    --primary: #6c5ce7;
+    --success: #00b894;
+    --danger: #ff7675;
+    --glass: rgba(255, 255, 255, 0.9);
 }
 
 body {
     font-family: 'Noto Sans TC', sans-serif;
-    background-color: var(--bg);
+    /* 這裡換成了一個更有活力的藍紫色漸層 */
+    background: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
+    background-attachment: fixed;
     margin: 0;
     display: flex;
     justify-content: center;
-    padding: 20px;
+    align-items: flex-start;
+    padding: 40px 20px;
+    min-height: 100vh;
 }
 
 .app-container {
     width: 100%;
-    max-width: 400px;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    padding: 25px;
+    max-width: 420px;
+    background: var(--glass);
+    /* 玻璃擬態效果：模糊背景 */
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,0.3);
 }
 
-h1 { font-size: 1.5rem; text-align: center; color: var(--primary); }
-h2 { font-size: 1.2rem; text-align: center; margin: 15px 0; }
-
-.rate-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: rgb(9, 0, 0);
-    padding: 15px;
-    border-radius: 15px;
+h1 {
+    font-size: 1.6rem;
     text-align: center;
-    margin-bottom: 20px;
+    color: #2d3436;
+    margin-top: 0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
-#rate-display { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
+/* 匯率卡片 - 漸層更深邃 */
+.rate-card {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 15px rgba(108, 92, 231, 0.3);
+}
 
+#currency-select {
+    margin: 12px 0;
+    padding: 8px 15px;
+    background: rgba(255,255,255,1);
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+/* 心情狀態區 - 根據狀態改變陰影 */
 .status-box {
     text-align: center;
     padding: 20px;
-    border-radius: 15px;
-    background: #fff;
-    border: 2px solid #eee;
-    margin-bottom: 20px;
-    transition: all 0.5s ease;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
 }
 
-#status-emoji { font-size: 3.5rem; margin: 10px 0; }
-
-.progress-bar-bg {
-    width: 100%; height: 12px; background: #eee;
-    border-radius: 10px; margin-top: 15px; overflow: hidden;
-}
-
-#progress-bar-fill {
-    width: 0%; height: 100%; background: var(--primary);
-    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.input-group { display: flex; flex-direction: column; gap: 8px; }
-
-input, select, button {
-    padding: 12px; border-radius: 10px; border: 1px solid #ddd; font-size: 1rem;
-}
-
-button { color: white; border: none; font-weight: bold; cursor: pointer; }
-.btn-income { background-color: var(--success); }
-.btn-expense { background-color: var(--primary); }
-
-.status-happy { background-color: #e8f5e9; border-color: #a5d6a7; }
-.status-sad { background-color: #ffebee; border-color: #ef9a9a; }
-
-.chart-container { margin-top: 25px; padding: 15px; background: #fafafa; border-radius: 15px; }
-
-/* 修正匯率下拉選單 */
-#currency-select {
+#status-emoji {
+    font-size: 4rem;
     margin: 10px 0;
-    padding: 8px 12px;
-    background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
-    color: #333; /* 深色文字，確保看得見 */
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    width: 80%; /* 寬度稍微縮小一點比較美觀 */
-    font-weight: bold;
-    outline: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
 }
 
-/* 讓下拉選單內的選項背景變白色，文字變黑色 */
+/* 輸入框美化 */
+input, select {
+    background: #f1f2f6;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+input:focus {
+    background: white;
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 8px rgba(108, 92, 231, 0.2);
+}
+
+/* 按鈕微動效 */
+button {
+    padding: 14px;
+    border-radius: 15px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.btn-income {
+    background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+    box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+}
+
+.btn-expense {
+    background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+}
+
+/* 圖表區塊美化 */
+.chart-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+}
+/* 強制修正匯率下拉選單顏色 */
+#currency-select {
+    margin: 12px 0;
+    padding: 10px 15px;
+    background-color: #ffffff !important; /* 強制背景為純白 */
+    color: #2d3436 !important;            /* 強制文字為深灰色 */
+    border: 2px solid #6c5ce7;           /* 加入紫色邊框增加對比 */
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 90%;
+    cursor: pointer;
+    appearance: auto;                    /* 確保顯示下拉箭頭 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 確保下拉選單裡面的選項也是深色字體 */
 #currency-select option {
-    background-color: white;
+    background-color: #ffffff;
+    color: #2d3436;
+    padding: 10px;
+}
+
+/* 匯率卡片文字美化 */
+#rate-display {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #ffffff; /* 匯率數字本身保持白色，因為在紫色背景上 */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+/* 讓輸入框看起來更有質感 */
+input[type="number"], input[type="text"], select {
+    background-color: #f8f9fa; /* 淡淡的灰色 */
+    border: 1px solid #dee2e6;
     color: #333;
 }
 
-/* 調整匯率卡片內的文字間距 */
-.rate-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+input:focus {
+    background-color: #ffffff;
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
 }
