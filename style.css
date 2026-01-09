@@ -30,7 +30,7 @@ h2 { font-size: 1.2rem; text-align: center; margin: 15px 0; }
 
 .rate-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    color: rgb(9, 0, 0);
     padding: 15px;
     border-radius: 15px;
     text-align: center;
@@ -75,3 +75,33 @@ button { color: white; border: none; font-weight: bold; cursor: pointer; }
 .status-sad { background-color: #ffebee; border-color: #ef9a9a; }
 
 .chart-container { margin-top: 25px; padding: 15px; background: #fafafa; border-radius: 15px; }
+
+/* 修正匯率下拉選單 */
+#currency-select {
+    margin: 10px 0;
+    padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+    color: #333; /* 深色文字，確保看得見 */
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 80%; /* 寬度稍微縮小一點比較美觀 */
+    font-weight: bold;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 讓下拉選單內的選項背景變白色，文字變黑色 */
+#currency-select option {
+    background-color: white;
+    color: #333;
+}
+
+/* 調整匯率卡片內的文字間距 */
+.rate-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
