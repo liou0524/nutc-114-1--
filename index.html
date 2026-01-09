@@ -2,34 +2,38 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>個人財務儀表板</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>💰 我的財務儀表板</h1>
+    <div class="app-container">
+        <h1>💰 財務小管家</h1>
 
-    <div id="exchange-rate-app">
-        <h3>今日匯率 (台幣對美金)</h3>
-        <p id="rate-display">讀取中...</p>
-    </div>
+        <div class="rate-card">
+            <div style="font-size: 0.9rem; opacity: 0.9;">今日美金匯率 (TWD)</div>
+            <div id="rate-display" style="font-size: 1.4rem; font-weight: bold; margin-top: 5px;">讀取中...</div>
+        </div>
 
-    <hr>
+        <div class="input-group">
+            <input type="text" id="item-name" placeholder="消費項目 (如：午餐)">
+            <input type="number" id="item-amount" placeholder="花費金額">
+            <select id="item-category">
+                <option value="食">🍽️ 食</option>
+                <option value="衣">👕 衣</option>
+                <option value="住">🏠 住</option>
+                <option value="行">🚗 行</option>
+            </select>
+            <button onclick="addItem()">新增支出紀錄</button>
+        </div>
 
-    <div id="input-section">
-        <input type="text" id="item-name" placeholder="消費項目 (例如：午餐)">
-        <input type="number" id="item-amount" placeholder="金額">
-        <select id="item-category">
-            <option value="食">食</option>
-            <option value="衣">衣</option>
-            <option value="住">住</option>
-            <option value="行">行</option>
-        </select>
-        <button onclick="addItem()">新增帳目</button>
-    </div>
+        <hr style="border: 0; border-top: 1px solid #eee;">
 
-    <div style="width: 400px; margin: 20px auto;">
-        <canvas id="myChart"></canvas>
+        <div class="chart-container">
+            <h3 style="text-align: center; font-size: 1rem;">支出比例分析</h3>
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
 
     <script src="script.js"></script>
