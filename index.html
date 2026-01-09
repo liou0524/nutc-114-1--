@@ -3,35 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人財務儀表板</title>
+    <title>個人財務小管家 - 期末專案</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
-        <h1>💰 財務小管家</h1>
+        <h1>💰 財務與存錢小管家</h1>
 
-        <div class="rate-card">
-            <div style="font-size: 0.9rem; opacity: 0.9;">今日美金匯率 (TWD)</div>
-            <div id="rate-display" style="font-size: 1.4rem; font-weight: bold; margin-top: 5px;">讀取中...</div>
+<div class="rate-card">
+    <div style="font-size: 0.8rem; opacity: 0.9;">全球匯率查詢 (對台幣 TWD)</div>
+    <select id="currency-select" onchange="getExchangeRate()" style="margin: 10px 0; background: rgba(255,255,255,0.2); color: white; border: 1px solid white;">
+        <option value="USD">🇺🇸 美金 (USD)</option>
+        <option value="HKD">🇭🇰 港幣 (HKD)</option>
+        <option value="KRW">🇰🇷 韓圓 (KRW)</option>
+        <option value="EUR">🇪🇺 歐元 (EUR)</option>
+        <option value="JPY">🇯🇵 日圓 (JPY)</option>
+    </select>
+    <div id="rate-display">匯率載入中...</div>
+</div>
+
+        <div id="status-container" class="status-box">
+            <label style="font-size: 0.8rem; color: #666;">🎯 存錢目標 (TWD)</label>
+            <input type="number" id="saving-goal" value="10000" onchange="updateStatus()">
+            <div id="status-emoji">😐</div>
+            <div id="status-text">開始記帳，挑戰目標吧！</div>
+            <div class="progress-bar-bg">
+                <div id="progress-bar-fill"></div>
+            </div>
         </div>
 
-        <div class="input-group">
-            <input type="text" id="item-name" placeholder="消費項目 (如：午餐)">
-            <input type="number" id="item-amount" placeholder="花費金額">
-            <select id="item-category">
-                <option value="食">🍽️ 食</option>
-                <option value="衣">👕 衣</option>
-                <option value="住">🏠 住</option>
-                <option value="行">🚗 行</option>
-            </select>
-            <button onclick="addItem()">新增支出紀錄</button>
+        <div class="input-section">
+            <div class="input-group">
+                <input type="number" id="income-amount" placeholder="輸入收入金額 (+)">
+                <button onclick="addIncome()" class="btn-income">存入收入</button>
+            </div>
+            
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            
+            <div class="input-group">
+                <input type="text" id="item-name" placeholder="支出項目 (如：晚餐)">
+                <input type="number" id="item-amount" placeholder="支出金額 (-)">
+                <select id="item-category">
+                    <option value="食">🍽️ 食</option>
+                    <option value="衣">👕 衣</option>
+                    <option value="住">🏠 住</option>
+                    <option value="行">🚗 行</option>
+                    <option value="育">📚 育</option>
+                    <option value="樂">🎮 樂</option>
+                </select>
+                <button onclick="addItem()" class="btn-expense">新增支出</button>
+            </div>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #eee;">
+        <h2 id="balance-display">目前結餘：$0</h2>
 
         <div class="chart-container">
-            <h3 style="text-align: center; font-size: 1rem;">支出比例分析</h3>
+            <h3 style="text-align: center; font-size: 0.9rem; margin-bottom: 10px;">支出分類分析</h3>
             <canvas id="myChart"></canvas>
         </div>
     </div>
