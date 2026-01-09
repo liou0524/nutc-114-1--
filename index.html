@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>個人財務儀表板</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>💰 我的財務儀表板</h1>
+
+    <div id="exchange-rate-app">
+        <h3>今日匯率 (台幣對美金)</h3>
+        <p id="rate-display">讀取中...</p>
+    </div>
+
+    <hr>
+
+    <div id="input-section">
+        <input type="text" id="item-name" placeholder="消費項目 (例如：午餐)">
+        <input type="number" id="item-amount" placeholder="金額">
+        <select id="item-category">
+            <option value="食">食</option>
+            <option value="衣">衣</option>
+            <option value="住">住</option>
+            <option value="行">行</option>
+        </select>
+        <button onclick="addItem()">新增帳目</button>
+    </div>
+
+    <div style="width: 400px; margin: 20px auto;">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
