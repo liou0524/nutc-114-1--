@@ -23,10 +23,24 @@ const myChart = new Chart(ctx, {
 async function getExchangeRate() {
     const cur = document.getElementById('currency-select').value;
     const url = `https://api.finmindtrade.com/api/v4/data?dataset=TaiwanExchangeRate&data_id=${cur}&start_date=2025-01-01`;
+    
     try {
         const res = await fetch(url).then(r => r.json());
-        document.getElementById('rate-display').innerText = `1 ${cur} = ${res.data[res.data.length-1].spot_sell}`;
-    } catch(e) { document.getElementById('rate-display').innerText = "載入失敗"; }
+        if (res.data && res.data.length > 0) {
+            // 從最後一筆往回找，直到找到有 spot_sell 數字的資料
+            let latestData = res.data.reverse().find(d => d.spot_sell && d.spot_sell !== 0);
+            
+            if (latestData) {
+                document.getElementById('rate-display').innerText = `1 ${cur} = ${latestData.spot_sell} TWD`;
+            } else {
+                document.getElementById('rate-display').innerText = "暫無有效匯率";
+            }
+        } else {
+            document.getElementById('rate-display').innerText = "查無資料";
+        }
+    } catch(e) { 
+        document.getElementById('rate-display').innerText = "連線失敗"; 
+    }
 }
 
 function addHistoryRecord(type, name, amount) {
